@@ -1,21 +1,22 @@
 library(shiny)
+require(rCharts)
 
 # Define UI for dataset viewer application
 shinyUI(
     pageWithSidebar(
         # Application title
-        headerPanel("Diabetes prediction"),
+        headerPanel("Airport Arrivals in Singapore by Country of Embarkation"),
         
         sidebarPanel(
-            numericInput('glucose', 'Glucose mg/dl', 90, min = 50, max = 200, step = 5),
+            numericInput('year', 'Enter the year (between 1978 and 2014)', 1978, min = 1978, max = 2014, step = 1),
             submitButton('Submit')
         ),
         mainPanel(
             h3('Results of prediction'),
             h4('You entered'),
             verbatimTextOutput("inputValue"),
-            h4('Which resulted in a prediction of '),
-            verbatimTextOutput("prediction")
+            h4('Chart'),
+            showOutput("myChart", "nvd3")
         )
     )
 )

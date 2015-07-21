@@ -1,10 +1,16 @@
 library(shiny)
+require(rCharts)
 
-diabetesRisk <- function(glucose) glucose / 200
+# Load data processing file
+source("processData.R")
 
 shinyServer(
     function(input, output) {
-        output$inputValue <- renderPrint({input$glucose})
-        output$prediction <- renderPrint({diabetesRisk(input$glucose)})
+        output$inputValue <- renderPrint({input$year})
+        
+        output$myChart <- renderChart({
+
+            plotResultsByYear(rankCountriesByYear(dataT,input$year),input$year)
+        })
     }
 )
