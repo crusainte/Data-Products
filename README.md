@@ -29,3 +29,7 @@ Title: International Visitor Arrivals By Region/Country Of Residence (Air), Mont
 3) Under Export, click on CSV to download the dataset
 
 _(I understand it is a convoluted way of obtain the dataset but I do not know of any other ways to do so)_
+
+## Link to Application
+
+[Application Hosted on shinyApps.io](https://crusainte.shinyapps.io/ShinyApp)
