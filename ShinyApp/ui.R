@@ -3,20 +3,22 @@ require(rCharts)
 
 # Define UI for dataset viewer application
 shinyUI(
-    pageWithSidebar(
+    fluidPage(
         # Application title
-        headerPanel("Airport Arrivals in Singapore by Country of Embarkation"),
+        titlePanel("Singapore Airport Arrivals by Country of Embarkation"
+),
+                   
+hr(),   
+            
+            mainPanel(
+                sliderInput("yearRange", label = h4("Input year range"), min = 1978, 
+                            max = 2014, value = c(1978, 2014)),
+                submitButton('Submit'),
+                hr(),
+                uiOutput("chartTitle"),
+                showOutput("myChart", "nvd3"),
+                tags$head(tags$style(HTML(".nv-axislabel {font: 15px Arial; font-weight:bold;}"))) # to style labels
+            )
         
-        sidebarPanel(
-            numericInput('year', 'Enter the year (between 1978 and 2014)', 1978, min = 1978, max = 2014, step = 1),
-            submitButton('Submit')
-        ),
-        mainPanel(
-            h3('Results of prediction'),
-            h4('You entered'),
-            verbatimTextOutput("inputValue"),
-            h4('Chart'),
-            showOutput("myChart", "nvd3")
-        )
     )
 )

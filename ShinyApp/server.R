@@ -5,12 +5,22 @@ require(rCharts)
 source("processData.R")
 
 shinyServer(
-    function(input, output) {
-        output$inputValue <- renderPrint({input$year})
-        
+    function(input, output) {    
         output$myChart <- renderChart({
-
-            plotResultsByYear(rankCountriesByYear(dataT,input$year),input$year)
+            plotResults(rankCountriesByYearRange(dataT,input$yearRange[1],input$yearRange[2]))
+        })
+        
+        output$chartTitle <- renderUI({
+            if(input$yearRange[1] != input$yearRange[2])
+            {
+                title <- paste("Top 10 Airport Arrival Countries between ",input$yearRange[1], " and ", input$yearRange[2])
+            }
+            else
+            {
+                title <- paste("Top 10 Airport Arrival Countries for ",input$yearRange[1])
+            }
+            
+            h4(title)
         })
     }
 )
